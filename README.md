@@ -5,6 +5,9 @@ A reusable, config-driven personality-quiz engine in React. One generic
 `QuizConfigFactory` builds concrete quizzes. Ships with a "Which Pokémon Type
 Are You?" quiz.
 
+> **Design & architecture:** see [`docs/DESIGN.md`](docs/DESIGN.md) — vision,
+> the framework-vs-configuration split, DDD/SOLID rationale, and how to add a quiz.
+
 ## Stack
 Vite + React 18 + Tailwind CSS + lucide-react.
 
