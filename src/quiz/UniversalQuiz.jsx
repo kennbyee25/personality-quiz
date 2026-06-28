@@ -489,4 +489,172 @@ export class QuizConfigFactory {
       questions,
     };
   }
+
+  static createRockQuiz() {
+    const results = {
+      granite: new QuizResult(
+        'Granite',
+        new Visual('🪨', 'from-gray-500 to-slate-700', 'text-white'),
+        'You are bedrock. Steady, dependable, and built to last — when everything shifts, people find their footing on you.',
+        { steady: 5, dependable: 5, strong: 5, grounded: 5, enduring: 5, practical: 5 },
+        ['Granite', 'Basalt', 'Gabbro', 'Diorite'],
+        ['Reliability', 'Strength', 'Endurance', 'Groundedness'],
+      ),
+      obsidian: new QuizResult(
+        'Obsidian',
+        new Visual('🌋', 'from-zinc-800 to-black', 'text-white'),
+        'You are volcanic glass — formed fast and forged sharp. Decisive, intense, and a little mysterious, you cut straight to the point.',
+        { sharp: 5, intense: 5, mysterious: 5, bold: 5, decisive: 5, edgy: 5 },
+        ['Obsidian', 'Flint', 'Onyx', 'Jet'],
+        ['Decisiveness', 'Focus', 'Depth', 'Edge'],
+      ),
+      geode: new QuizResult(
+        'Geode',
+        new Visual('💎', 'from-violet-500 to-fuchsia-700', 'text-white'),
+        'Plain on the outside, dazzling within. You hold hidden depths and surprise everyone who takes the time to look closer.',
+        { creative: 5, hidden: 5, surprising: 5, introspective: 5, unique: 5, layered: 5 },
+        ['Geode', 'Amethyst', 'Agate', 'Opal'],
+        ['Creativity', 'Inner depth', 'Originality', 'Surprise'],
+      ),
+      marble: new QuizResult(
+        'Marble',
+        new Visual('🏛️', 'from-slate-200 to-slate-400', 'text-slate-900'),
+        'Refined under pressure into something timeless. Elegant and graceful, you turn the everyday into something worth admiring.',
+        { elegant: 5, refined: 5, graceful: 5, timeless: 5, polished: 5 },
+        ['Marble', 'Alabaster', 'Travertine', 'Quartzite'],
+        ['Elegance', 'Artistry', 'Poise', 'Timelessness'],
+      ),
+      sandstone: new QuizResult(
+        'Sandstone',
+        new Visual('🏜️', 'from-amber-400 to-orange-600', 'text-amber-950'),
+        'Layer upon patient layer, warmed by the sun. Adaptable and easygoing, you meet whatever comes with quiet warmth.',
+        { adaptable: 5, warm: 5, easygoing: 5, patient: 5, gentle: 5 },
+        ['Sandstone', 'Limestone', 'Shale', 'Tuff'],
+        ['Adaptability', 'Warmth', 'Patience', 'Ease'],
+      ),
+      meteorite: new QuizResult(
+        'Meteorite',
+        new Visual('☄️', 'from-indigo-700 to-slate-900', 'text-white'),
+        'You fell from somewhere far away. Rare, curious, and resilient, you carry a spark of the cosmos others can only wonder at.',
+        { adventurous: 5, rare: 5, curious: 5, independent: 5, resilient: 5, cosmic: 5 },
+        ['Meteorite', 'Tektite', 'Pallasite', 'Moldavite'],
+        ['Curiosity', 'Independence', 'Resilience', 'Wonder'],
+      ),
+    };
+
+    const questions = Array.from({ length: 10 }, (_, i) => {
+      const bank = [
+        {
+          location: 'A Crack in the Earth',
+          context: 'A glowing fissure opens at your feet, light pulsing somewhere deep below.',
+          choices: [
+            new Choice('Descend slowly and carefully', { grounded: 3, practical: 3, steady: 2 }, i + 1),
+            new Choice('Leap in, chasing the glow', { adventurous: 3, curious: 3, bold: 2 }, i + 1),
+            new Choice('Sit at the edge and contemplate it', { introspective: 3, layered: 2, patient: 2 }, i + 1),
+          ],
+        },
+        {
+          location: "The Sculptor's Offer",
+          context: 'A sculptor asks to carve you into whatever you wish to become.',
+          choices: [
+            new Choice('A grand, timeless monument', { elegant: 3, refined: 3, timeless: 2 }, i + 1),
+            new Choice('Leave me raw and unshaped', { grounded: 3, practical: 2, enduring: 2 }, i + 1),
+            new Choice('Something no one would expect', { creative: 3, unique: 3, surprising: 2 }, i + 1),
+          ],
+        },
+        {
+          location: 'Pressure in the Deep',
+          context: 'Miles of earth press down on you. Heat and weight build with no escape.',
+          choices: [
+            new Choice('Harden and endure it', { enduring: 3, strong: 3, steady: 2 }, i + 1),
+            new Choice('Transform into something sharper', { sharp: 3, intense: 3, decisive: 2 }, i + 1),
+            new Choice('Let it grow crystals hidden within', { hidden: 3, introspective: 3, layered: 2 }, i + 1),
+          ],
+        },
+        {
+          location: 'A Festival on the Shore',
+          context: 'You arrive at a beach festival, music rolling off the waves.',
+          choices: [
+            new Choice('Join the revelry', { warm: 3, easygoing: 3, gentle: 2 }, i + 1),
+            new Choice('Watch quietly from the cliffs', { mysterious: 3, introspective: 2, independent: 2 }, i + 1),
+            new Choice('Bring elegance to the dance', { elegant: 3, graceful: 3, refined: 2 }, i + 1),
+          ],
+        },
+        {
+          location: 'The Long Road',
+          context: 'A road stretches past the horizon, terrain changing with every mile.',
+          choices: [
+            new Choice('Keep a steady pace, never stopping', { steady: 3, dependable: 3, enduring: 2 }, i + 1),
+            new Choice('Wander off to explore the unknown', { curious: 3, adventurous: 3, independent: 2 }, i + 1),
+            new Choice('Adapt to whatever ground comes', { adaptable: 3, patient: 3, easygoing: 2 }, i + 1),
+          ],
+        },
+        {
+          location: 'Avatar of the Mountain',
+          context: 'The mountain itself rises into a towering form and regards you.',
+          choices: [
+            new Choice('Challenge it', { bold: 3, intense: 3, decisive: 2 }, i + 1),
+            new Choice('Seek to understand it', { introspective: 3, curious: 3, layered: 2 }, i + 1),
+            new Choice('Stand firm before it', { grounded: 3, strong: 3, steady: 2 }, i + 1),
+            new Choice('Quietly find a path around', { adaptable: 3, independent: 2, adventurous: 2 }, i + 1),
+          ],
+        },
+        {
+          location: 'What Light Do You Hold?',
+          context: 'Held up to the sun, what kind of light comes off you?',
+          choices: [
+            new Choice('A smooth, polished gleam', { refined: 3, elegant: 3, polished: 2 }, i + 1),
+            new Choice('A sharp, sudden glint', { sharp: 3, edgy: 3, bold: 2 }, i + 1),
+            new Choice('A hidden sparkle deep inside', { hidden: 3, surprising: 3, unique: 2 }, i + 1),
+          ],
+        },
+        {
+          location: 'A Gift to Give',
+          context: 'You may give one thing to someone you care about.',
+          choices: [
+            new Choice('Something dependable and lasting', { dependable: 3, enduring: 3, practical: 2 }, i + 1),
+            new Choice('Something warm and comforting', { warm: 3, gentle: 3, easygoing: 2 }, i + 1),
+            new Choice('Something rare and otherworldly', { rare: 3, cosmic: 3, adventurous: 2 }, i + 1),
+          ],
+        },
+        {
+          location: 'Weathering the Storm',
+          context: 'Wind and rain hammer the landscape for a thousand years.',
+          choices: [
+            new Choice('Stand unmoved', { strong: 3, steady: 3, grounded: 2 }, i + 1),
+            new Choice('Let it polish you smoother', { graceful: 3, refined: 2, patient: 2 }, i + 1),
+            new Choice('Ride the winds somewhere new', { adventurous: 3, resilient: 3, independent: 2 }, i + 1),
+          ],
+        },
+        {
+          location: "The Collector's Shelf",
+          context: 'Where do you end up, in the end?',
+          choices: [
+            new Choice('Pride of place, admired by all', { elegant: 3, timeless: 3, refined: 2 }, i + 1),
+            new Choice('Tucked away, found by the curious', { hidden: 3, introspective: 3, unique: 2 }, i + 1),
+            new Choice('Out in the wild, never collected', { independent: 3, adventurous: 2, rare: 2 }, i + 1),
+          ],
+        },
+      ];
+      const q = bank[i];
+      return new Question(i, q.location, q.context, q.choices);
+    });
+
+    return {
+      title: 'What Rock Are You?',
+      description:
+        'Wander an ever-shifting landscape and discover which stone your spirit is cut from.',
+      questionsToAnswer: 8,
+      theme: {
+        introGradient: 'from-stone-700 via-amber-800 to-stone-900',
+        quizGradient: 'from-stone-800 via-neutral-900 to-stone-900',
+        iconSet: '🪨💎🌋🏛️🏜️☄️',
+        startButtonText: 'Begin the Descent',
+        resultTitle: 'You are…',
+        examplesTitle: 'Stones like you: {type}',
+      },
+      results,
+      questions,
+    };
+  }
 }
