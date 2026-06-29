@@ -12,6 +12,14 @@ const QUIZZES = [
     create: () => QuizConfigFactory.createRockQuiz(),
   },
   {
+    key: 'bird',
+    label: 'What Bird Are You?',
+    blurb: 'Take flight — archetypes grounded in real bird data.',
+    icon: '🦅',
+    gradient: 'from-sky-600 via-indigo-700 to-slate-900',
+    create: () => QuizConfigFactory.createBirdQuiz(),
+  },
+  {
     key: 'pokemon',
     label: 'Which Pokémon Type Are You?',
     blurb: 'Journey the Pokémon world to find your element.',

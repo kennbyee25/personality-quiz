@@ -657,4 +657,177 @@ export class QuizConfigFactory {
       questions,
     };
   }
+
+  // "What Bird Are You?" — the result traits are grounded in real, recorded
+  // bird attributes from the eBird ecosystem (checklists + Status & Trends) and
+  // companion trait datasets (AVONET morphology, EltonTraits diet). See
+  // docs/BIRD_ATTRIBUTES.md for the attribute basis. The axes (migration,
+  // sociality/flock size, diet, activity period, flight style, pair-bonding)
+  // are things birders actually measure — that's the "salient attributes" point.
+  static createBirdQuiz() {
+    const results = {
+      falcon: new QuizResult(
+        'Peregrine Falcon',
+        new Visual('🦅', 'from-amber-700 to-stone-900', 'text-white'),
+        'Apex of the open sky — the fastest animal alive in a dive. Bold, focused, and decisive, you commit fully and strike clean.',
+        { bold: 5, focused: 5, fast: 5, decisive: 5, fierce: 5, independent: 5 },
+        ['Peregrine Falcon', 'Golden Eagle', 'Goshawk', 'Merlin'],
+        ['Boldness', 'Focus', 'Speed', 'Decisiveness'],
+      ),
+      raven: new QuizResult(
+        'Raven',
+        new Visual('🐦‍⬛', 'from-slate-700 to-zinc-900', 'text-white'),
+        'One of the cleverest minds in the sky. Curious, playful, and endlessly resourceful, you solve what others only puzzle over.',
+        { clever: 5, curious: 5, adaptable: 5, playful: 5, resourceful: 5, expressive: 5 },
+        ['Common Raven', 'Crow', 'Magpie', 'Jay'],
+        ['Cleverness', 'Curiosity', 'Adaptability', 'Wit'],
+      ),
+      owl: new QuizResult(
+        'Owl',
+        new Visual('🦉', 'from-indigo-900 to-slate-900', 'text-white'),
+        'The watcher in the dark. Patient, perceptive, and unhurried, you see what daylight hides and miss almost nothing.',
+        { wise: 5, observant: 5, patient: 5, calm: 5, mysterious: 5, perceptive: 5 },
+        ['Great Horned Owl', 'Barn Owl', 'Snowy Owl', 'Tawny Owl'],
+        ['Wisdom', 'Perception', 'Patience', 'Calm'],
+      ),
+      hummingbird: new QuizResult(
+        'Hummingbird',
+        new Visual('🐦', 'from-emerald-400 to-fuchsia-600', 'text-white'),
+        'Pure kinetic energy in iridescent feathers — wings a blur, heart a drum. Vibrant, precise, and fiercely spirited.',
+        { energetic: 5, vibrant: 5, restless: 5, precise: 5, spirited: 5, territorial: 5 },
+        ['Ruby-throated Hummingbird', "Anna's Hummingbird", 'Bee Hummingbird', 'Rufous Hummingbird'],
+        ['Energy', 'Vibrancy', 'Precision', 'Spirit'],
+      ),
+      albatross: new QuizResult(
+        'Albatross',
+        new Visual('🕊️', 'from-sky-500 to-blue-800', 'text-white'),
+        'A wanderer of whole oceans, soaring thousands of miles on a single breath of wind — yet bonded for life. Free, enduring, and serene.',
+        { wandering: 5, independent: 5, enduring: 5, free: 5, devoted: 5, serene: 5 },
+        ['Wandering Albatross', 'Royal Albatross', 'Black-browed Albatross', "Laysan Albatross"],
+        ['Wanderlust', 'Endurance', 'Independence', 'Serenity'],
+      ),
+      swan: new QuizResult(
+        'Swan',
+        new Visual('🦢', 'from-slate-100 to-slate-300', 'text-slate-900'),
+        'Effortless grace on still water, devoted to one partner for life. Elegant, poised, and gentle in everything you do.',
+        { elegant: 5, graceful: 5, devoted: 5, poised: 5, gentle: 5, refined: 5 },
+        ['Mute Swan', 'Trumpeter Swan', 'Whooper Swan', 'Black Swan'],
+        ['Elegance', 'Grace', 'Devotion', 'Poise'],
+      ),
+    };
+
+    const questions = Array.from({ length: 10 }, (_, i) => {
+      const bank = [
+        {
+          location: 'The Open Sky Calls',
+          context: 'The wind lifts beneath your wings. How do you take to the air?',
+          choices: [
+            new Choice('Climb high, then strike at the perfect moment', { focused: 3, bold: 3, decisive: 2 }, i + 1),
+            new Choice('Glide for hours, wherever the wind leads', { wandering: 3, free: 3, serene: 2 }, i + 1),
+            new Choice('Dart between blossoms, never still', { energetic: 3, restless: 3, vibrant: 2 }, i + 1),
+          ],
+        },
+        {
+          location: 'A Puzzle in the Branches',
+          context: 'A latched box holds food just out of reach.',
+          choices: [
+            new Choice('Crack it open with a clever trick', { clever: 3, curious: 3, resourceful: 2 }, i + 1),
+            new Choice('Study it quietly until it makes sense', { wise: 3, observant: 3, patient: 2 }, i + 1),
+            new Choice('Admire how finely it is made', { elegant: 3, refined: 3, poised: 2 }, i + 1),
+          ],
+        },
+        {
+          location: 'Choosing a Home',
+          context: 'Where will you settle?',
+          choices: [
+            new Choice('A lone cliff ledge with a commanding view', { independent: 3, bold: 3, focused: 2 }, i + 1),
+            new Choice('Nowhere for long — the season decides', { wandering: 3, free: 3, adaptable: 2 }, i + 1),
+            new Choice('A calm lake, returned to with your mate each year', { devoted: 3, gentle: 3, serene: 2 }, i + 1),
+          ],
+        },
+        {
+          location: 'The Flock Gathers at Dusk',
+          context: 'Hundreds wheel and call in the fading light.',
+          choices: [
+            new Choice('Lead them with sharp, ringing calls', { decisive: 3, expressive: 3, bold: 2 }, i + 1),
+            new Choice('Slip away to hunt alone in the dark', { mysterious: 3, independent: 2, perceptive: 2 }, i + 1),
+            new Choice('Stay close beside the one you love', { devoted: 3, gentle: 3, graceful: 2 }, i + 1),
+          ],
+        },
+        {
+          location: 'A Long Journey Ahead',
+          context: 'A great distance lies between you and where you must be.',
+          choices: [
+            new Choice('Cross an ocean without ever landing', { enduring: 3, free: 3, independent: 2 }, i + 1),
+            new Choice('Go in quick, restless bursts', { energetic: 3, spirited: 3, restless: 2 }, i + 1),
+            new Choice('Plan a clever route, using every advantage', { clever: 3, resourceful: 3, adaptable: 2 }, i + 1),
+          ],
+        },
+        {
+          location: 'Night Falls',
+          context: 'The world goes dark and quiet.',
+          choices: [
+            new Choice('Come alive — the dark is your domain', { mysterious: 3, observant: 3, perceptive: 2 }, i + 1),
+            new Choice('Find a high perch and rest for the hunt', { focused: 3, patient: 3, decisive: 2 }, i + 1),
+            new Choice('Settle gracefully beside your companion', { graceful: 3, devoted: 3, calm: 2 }, i + 1),
+          ],
+        },
+        {
+          location: 'Someone Challenges You',
+          context: 'A rival intrudes on your space.',
+          choices: [
+            new Choice('Strike first — fast and precise', { fast: 3, fierce: 3, decisive: 2 }, i + 1),
+            new Choice('Defend your patch of flowers ferociously', { territorial: 3, spirited: 3, energetic: 2 }, i + 1),
+            new Choice('Outwit them entirely', { clever: 3, curious: 3, playful: 2 }, i + 1),
+          ],
+        },
+        {
+          location: 'How Do You Move Through the World?',
+          context: 'Flight is your signature. What does yours look like?',
+          choices: [
+            new Choice('A blistering dive, faster than anything', { fast: 3, bold: 3, focused: 2 }, i + 1),
+            new Choice('Tireless soaring across endless horizons', { wandering: 3, enduring: 3, free: 2 }, i + 1),
+            new Choice('A hovering blur of wingbeats', { energetic: 3, precise: 3, vibrant: 2 }, i + 1),
+          ],
+        },
+        {
+          location: 'What Do Others Notice First?',
+          context: 'Eyes turn toward you. What do they see?',
+          choices: [
+            new Choice('Your sharp, fearless gaze', { bold: 3, fierce: 3, focused: 2 }, i + 1),
+            new Choice('Your uncanny cleverness', { clever: 3, curious: 3, expressive: 2 }, i + 1),
+            new Choice('Your serene elegance', { elegant: 3, graceful: 3, poised: 2 }, i + 1),
+          ],
+        },
+        {
+          location: 'At Rest',
+          context: 'A rare quiet moment. How do you spend it?',
+          choices: [
+            new Choice('Perched still as stone, watching everything', { observant: 3, patient: 3, calm: 2 }, i + 1),
+            new Choice('Preening your feathers to a perfect sheen', { refined: 3, elegant: 3, poised: 2 }, i + 1),
+            new Choice('Already restless, ready for the next adventure', { restless: 3, spirited: 3, free: 2 }, i + 1),
+          ],
+        },
+      ];
+      const q = bank[i];
+      return new Question(i, q.location, q.context, q.choices);
+    });
+
+    return {
+      title: 'What Bird Are You?',
+      description:
+        'Take to the skies and discover which bird your spirit takes after — with archetypes grounded in real bird data.',
+      questionsToAnswer: 8,
+      theme: {
+        introGradient: 'from-sky-600 via-indigo-700 to-slate-900',
+        quizGradient: 'from-slate-800 via-sky-900 to-slate-900',
+        iconSet: '🦅🐦‍⬛🦉🐦🕊️🦢',
+        startButtonText: 'Take Flight',
+        resultTitle: 'You are…',
+        examplesTitle: 'Birds like you: {type}',
+      },
+      results,
+      questions,
+    };
+  }
 }
